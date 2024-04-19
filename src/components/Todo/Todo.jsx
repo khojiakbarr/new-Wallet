@@ -1,28 +1,10 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Table from "../Table/Table";
+import { todoContex } from "../../App";
 
 export default function Todo() {
-  const [todo, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case "get":
-        return [...state, ...action.local];
-      case "add":
-        localStorage.setItem("tasks", JSON.stringify([...state, action.task]));
-        return [...state, action.task];
-      default:
-        return state;
-    }
-  }, []);
-
-  useEffect(() => {
-    const tasks = JSON.parse(localStorage.getItem("tasks"));
-
-    if (tasks) {
-      dispatch({ type: "get", local: tasks });
-    }
-  }, []);
-
+  const { todo, dispatch } = useContext(todoContex);
   const { register, handleSubmit, reset } = useForm();
 
   const handle = (data) => {
@@ -47,7 +29,6 @@ export default function Todo() {
             Add
           </button>
         </form>
-        
       </div>
       <Table />
     </>

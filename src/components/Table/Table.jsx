@@ -32,7 +32,7 @@ export default function Table() {
                     id: todoTask.id,
                   })
                 }
-                className={`px-6 py-4 text-center ${
+                className={`px-6 py-4 text-center select-none ${
                   todoTask.compledet ? "line-through" : null
                 } `}
               >
@@ -40,11 +40,22 @@ export default function Table() {
               </td>
               <td className="px-6 py-4 flex items-center text-center justify-center ">
                 <div className="flex gap-2">
-                  <button className="text-center py-[5px] px-3 rounded text-black font-bold bg-white">
+                  <button
+                    onClick={() =>
+                      setShowModal({
+                        modal: !showModal.modal,
+                        task: todoTask.task,
+                        id: todoTask.id,
+                      })
+                    }
+                    className="text-center py-[5px] px-3 rounded text-black font-bold bg-white"
+                  >
                     Edit
                   </button>
                   <button
-                    onClick={() => setShowModal(!showModal)}
+                    onClick={() =>
+                      dispatch({ type: "delete", id: todoTask.id })
+                    }
                     className="text-center py-[5px] px-3 rounded text-black font-bold bg-white"
                   >
                     Delete

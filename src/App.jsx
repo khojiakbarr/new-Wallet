@@ -7,7 +7,12 @@ import Modal from "./components/Modal/Modal";
 const todoContex = createContext();
 const todoModalContex = createContext();
 function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState({
+    modal: false,
+    task: "",
+    id: "",
+  });
+
   const [todo, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "get":
@@ -59,7 +64,7 @@ function App() {
         <div className="bg-gray-600 h-screen">
           <h1 className="text-center font-bold text-[25px] pt-4">Todo App</h1>
           <Todo />
-          {showModal ? <Modal setShowModal={setShowModal} /> : null}
+          {showModal.modal ? <Modal setShowModal={setShowModal} /> : null}
         </div>
       </todoModalContex.Provider>
     </todoContex.Provider>

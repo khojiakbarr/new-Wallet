@@ -11,9 +11,11 @@ export default function Table() {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3 text-center">
+              IsCompladet
+            </th>{" "}
+            <th scope="col" className="px-6 py-3 text-center">
               Task
             </th>
-
             <th scope="col" className="px-6 py-3 text-center">
               Action
             </th>
@@ -25,6 +27,7 @@ export default function Table() {
               key={todoTask.id}
               className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
             >
+              <td className="px-6 py-4 text-center select-none">dubleClick</td>
               <td
                 onDoubleClick={() =>
                   dispatch({

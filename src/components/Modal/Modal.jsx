@@ -5,10 +5,19 @@ export default function Modal() {
   const { todo, dispatch } = useContext(todoContex);
   const { showModal, setShowModal } = useContext(todoModalContex);
   const [newTask, setNewTask] = useState(showModal.task);
-  
+
   function handleInputValue(e) {
     const value = e.target.value;
     setNewTask(value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newTodo = todo.map((task) =>
+      task.id === showModal.id ? { ...task, task: newTask } : task
+    );
+    dispatch({ type: "update", newArr: newTodo });
+    setShowModal({ modal: false, task: "", id: "" });
   }
 
   return (
@@ -19,7 +28,7 @@ export default function Modal() {
       className="fixed top-0 left-0 w-full h-screen backdrop-blur flex items-center justify-center"
     >
       <form
-        // onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => handleSubmit(e)}
         onClick={(e) => {
           e.stopPropagation();
         }}

@@ -39,15 +39,9 @@ function App() {
         const newUpState = state.filter((todo) => todo.id !== action.id);
         localStorage.setItem("tasks", JSON.stringify(newUpState));
         return newUpState;
-
-      case "edit":
-        const newUpdateState = state.map((todo) =>
-          todo.id === action.id ? { ...todo, task: action.upTask } : todo
-        );
-        return newUpdateState;
-        case "getById":
-          
-          return 
+      
+        case "update":
+          return action.newArr
       default:
         return state;
     }

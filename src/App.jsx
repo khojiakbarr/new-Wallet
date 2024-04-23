@@ -45,6 +45,9 @@ function App() {
           todo.id === action.id ? { ...todo, task: action.upTask } : todo
         );
         return newUpdateState;
+        case "getById":
+          
+          return 
       default:
         return state;
     }

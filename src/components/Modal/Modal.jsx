@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { todoContex, todoModalContex } from "../../App";
 
 export default function Modal() {
   const { todo, dispatch } = useContext(todoContex);
   const { showModal, setShowModal } = useContext(todoModalContex);
-  const { input, setInput } = useState({ newTask: showModal.task });
-
-  function handleSubmitInputValue(e) {
-    // console.log(showModal.task);
-    // console.log(input.newTask); 
+  const [newTask, setNewTask] = useState(showModal.task);
+  
+  function handleInputValue(e) {
     const value = e.target.value;
-    console.log(value);
+    setNewTask(value);
   }
+
   return (
     <div
       onClick={(e) => {
@@ -32,8 +31,8 @@ export default function Modal() {
           placeholder="task"
           autoComplete="off"
           required
-          // value={state.newTask}
-          onChange={(e) => handleSubmitInputValue(e)}
+          value={newTask}
+          onChange={(e) => handleInputValue(e)}
         />
         <button className=" rounded px-4 py-1 border-2 border-sky-600">
           save
